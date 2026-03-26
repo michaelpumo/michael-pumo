@@ -95,6 +95,19 @@ export default defineNuxtConfig({
         propsDestructure: true,
       },
     },
+    optimizeDeps: {
+      include: [
+        '@storyblok/vue',
+        '@vue/devtools-core',
+        '@vue/devtools-kit',
+        'gsap',
+        'gsap/SplitText',
+        'keen-slider/vue.es',
+        'lucide-vue-next',
+        'gsap/ScrollTrigger',
+        '@vueuse/core',
+      ],
+    },
   },
   typescript: {
     strict: true,
