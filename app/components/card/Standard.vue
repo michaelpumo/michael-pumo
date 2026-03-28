@@ -21,7 +21,7 @@ const isButton = attrs.role === 'button' || attrs.tabindex === '0'
 
 <template>
   <div
-    class="flex flex-col gap-6 items-start justify-between rounded-10"
+    class="size-full flex flex-col gap-6 items-start justify-between rounded-10"
     :class="[
       backgrounds[background],
       {
@@ -50,14 +50,14 @@ const isButton = attrs.role === 'button' || attrs.tabindex === '0'
 
       <p
         v-if="text && typeof text === 'string'"
-        class="text-14 text-pretty max-w-[40ch]"
+        class="text-14 text-balance max-w-[40ch]"
       >
         {{ text }}
       </p>
 
       <div
         v-else-if="typeof text !== 'string' && storyblokRichTextContent(text)"
-        class="[&_:is(p):not(:last-child)]:mb-4 text-pretty text-14 max-w-[40ch]"
+        class="[&_:is(p):not(:last-child)]:mb-4 text-balance text-14 max-w-[40ch]"
       >
         <StoryblokText :html="text" />
       </div>

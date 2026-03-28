@@ -125,7 +125,7 @@
 @layer theme {
   /* https://clamp-calculator.netlify.app/ */
   :root {
-    --app-inner-gutter: --spacing(3);
+    --app-inner-gutter: --spacing(4);
     --app-outer-gutter: clamp(24px, -11.897px + 8.974vw, 80px);
 
     --app-gutter: clamp(24px, -11.897px + 8.974vw, 80px);

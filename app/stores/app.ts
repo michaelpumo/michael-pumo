@@ -5,9 +5,11 @@ export const useAppStore = defineStore(
   () => {
     const theme = ref<App.Themes>('dark')
     const typeface = ref<App.Typeface>('saans')
+    const aussieMode = ref(false)
 
     const getTheme = computed(() => theme.value)
     const getTypeface = computed(() => typeface.value)
+    const getAussieMode = computed(() => aussieMode.value)
 
     function setTheme(value: App.Themes) {
       theme.value = value
@@ -17,13 +19,20 @@ export const useAppStore = defineStore(
       typeface.value = value
     }
 
+    function setAussieMode(value: boolean) {
+      aussieMode.value = value
+    }
+
     return {
       theme,
       typeface,
+      aussieMode,
       getTheme,
       getTypeface,
+      getAussieMode,
       setTheme,
       setTypeface,
+      setAussieMode,
     }
   },
   {

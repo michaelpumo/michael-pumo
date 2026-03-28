@@ -23,6 +23,10 @@ const setTheme = () => {
   appStore.setTheme(appStore.getTheme === 'light' ? 'dark' : 'light')
 }
 
+const toggleAussieMode = () => {
+  appStore.setAussieMode(!appStore.getAussieMode)
+}
+
 const background = block.background as 'bg-primary' | 'bg-secondary'
 </script>
 
@@ -33,12 +37,13 @@ const background = block.background as 'bg-primary' | 'bg-secondary'
     :headline-a11y="block.headline_a11y"
     :text="block.text"
     :background="background"
+    class="@container"
   >
-    <div class="flex flex-wrap justify-center gap-4">
+    <div class="grid grid-cols-1 @md:grid-cols-2 @4xl:grid-cols-4 gap-4">
       <CardStandard
-        class="w-full xs:w-75"
+        class="w-full"
         headline="Typeface"
-        :text="`You are currently viewing ${appStore.getTypeface === 'saans' ? 'Saans' : 'Comic Neue 🤣'} typeface ${appStore.getTypeface === 'saans' ? 'by Displaay Type Foundry' : 'from Google Fonts'}. Maybe you'd like to switch things up?`"
+        :text="`Currently viewing ${appStore.getTypeface === 'saans' ? 'Saans' : 'Comic Neue 🤣'} typeface ${appStore.getTypeface === 'saans' ? 'by Displaay Type Foundry' : 'from Google Fonts'}. Maybe switch things up?`"
         :background="block.background === 'bg-primary' ? 'secondary' : 'primary'"
         role="button"
         tabindex="0"
@@ -53,7 +58,7 @@ const background = block.background as 'bg-primary' | 'bg-secondary'
       </CardStandard>
 
       <CardStandard
-        class="w-full xs:w-75"
+        class="w-full"
         headline="Palette"
         :text="`Are things a little ${appStore.getTheme === 'dark' ? 'dark' : 'light'} around here? Switch up the palette mode to suit your preference.`"
         :background="block.background === 'bg-primary' ? 'secondary' : 'primary'"
@@ -70,7 +75,7 @@ const background = block.background as 'bg-primary' | 'bg-secondary'
       </CardStandard>
 
       <CardStandard
-        class="w-full xs:w-75"
+        class="w-full"
         headline="Vibes"
         text="Sit back, relax and listen to the sound of the ocean waves crashing on the shore as you sip a piña colada 🏝️."
         :background="block.background === 'bg-primary' ? 'secondary' : 'primary'"
@@ -82,6 +87,22 @@ const background = block.background as 'bg-primary' | 'bg-secondary'
         <template #top>
           <div class="flex flex-col h-full place-content-center">
             <SelectedAudio ref="audio" />
+          </div>
+        </template>
+      </CardStandard>
+
+      <CardStandard
+        class="w-full"
+        headline="Aussie Mode"
+        text="Flip the reading experience to accommodate our friends down under."
+        :background="block.background === 'bg-primary' ? 'secondary' : 'primary'"
+        role="button"
+        tabindex="0"
+        @click="toggleAussieMode"
+      >
+        <template #top>
+          <div class="flex flex-col h-full place-content-center">
+            <SelectedAussieMode />
           </div>
         </template>
       </CardStandard>

@@ -6,8 +6,10 @@ const appStore = useAppStore()
 const route = useRoute()
 
 const globalClasses = computed(() => [
+  'transition-transform duration-2000 ease-smooth',
   `theme-${appStore.getTheme} typeface-${appStore.getTypeface}`,
   storyblokEditor(route.query) ? 'is-storyblok-editor' : '',
+  appStore.getAussieMode ? 'rotate-180' : 'rotate-0',
 ])
 
 const themes = {
