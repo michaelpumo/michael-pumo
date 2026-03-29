@@ -19,7 +19,7 @@ const { content } = defineProps<Props>()
       </section>
     </template>
 
-    <article>
+    <main>
       <template
         v-for="(block) in content.blocks"
         :key="block._uid"
@@ -44,6 +44,6 @@ const { content } = defineProps<Props>()
           <BlockText :block />
         </section>
       </template>
-    </article>
+    </main>
   </div>
 </template>
