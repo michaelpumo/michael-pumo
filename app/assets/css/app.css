@@ -101,7 +101,7 @@
   --text-48--letter-spacing: -0.005em;
 
   --text-fluid-30-56: clamp(1.875rem, 1.4474rem + 1.8246cqi, 3.5rem); /* min: 375px, max: 1800px */
-  --text-fluid-30-56--line-height: 1.1;
+  --text-fluid-30-56--line-height: 1.125;
   --text-fluid-30-56--letter-spacing: -2%;
 
   --text-fluid-36-64: clamp(2.25rem, 1rem + 5.3333cqi, 4rem); /* min: 375px, max: 900px */
