@@ -33,7 +33,7 @@ const run = () => {
         trigger: container.value,
         start: 'top center',
         end: 'bottom center',
-        scrub: 2,
+        scrub: 1.5,
         invalidateOnRefresh: true,
       },
     })
