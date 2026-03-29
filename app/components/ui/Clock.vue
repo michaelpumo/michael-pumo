@@ -5,7 +5,6 @@ interface Props {
 
 const { timeZone = 'Europe/London' } = defineProps<Props>()
 
-const clock = useTemplateRef<HTMLDivElement | null>('clock')
 const time = ref('')
 const zone = ref('')
 const raf = ref<number | undefined>(undefined)
@@ -43,7 +42,6 @@ onUnmounted(() => {
 
 <template>
   <time
-    ref="clock"
     class="block"
     :datetime="time"
   >
