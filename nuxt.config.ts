@@ -128,7 +128,11 @@ export default defineNuxtConfig({
     provider: 'storyblok',
     storyblok: {
       baseURL: 'https://a2.storyblok.com',
+      modifiers: {
+        smart: true,
+      },
     },
+    format: ['webp'],
     domains: ['storyblok.com', 'michaelpumo.com'],
     quality: 80,
     screens: {

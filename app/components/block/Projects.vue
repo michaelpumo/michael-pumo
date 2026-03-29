@@ -1,5 +1,9 @@
 <script lang="ts" setup>
 import type { BlockProjects } from '#storyblok-components'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(ScrollTrigger)
 
 interface Props {
   block: BlockProjects
@@ -9,49 +13,61 @@ const { block } = defineProps<Props>()
 
 const background = block.background as 'bg-primary' | 'bg-secondary'
 
-const isXs = useAtMedia('(max-width: 479px)')
-const isSm = useAtMedia('(min-width: 480px) and (max-width: 799px)')
-const isMd = useAtMedia('(min-width: 800px) and (max-width: 1199px)')
-const isLg = useAtMedia('(min-width: 1200px)')
+const items = useTemplateRef('items')
 
-const perView = computed(() => {
-  if (isXs.value) {
-    return 1
+onMounted(() => {
+ items.value?.forEach(item => {
+  const el = item?.$el
+
+  if (!el) {
+    return
   }
-  else if (isSm.value) {
-    return 2
-  }
-  else if (isMd.value) {
-    return 3
-  }
-  else if (isLg.value) {
-    return 4
-  }
-  return 4
+  
+  gsap
+    .timeline({
+      scrollTrigger: {
+        markers: false,
+        trigger: el,
+        scrub: 1.5,
+        start: 'top top',
+      },
+    })
+    .fromTo(
+      el,
+      {
+        scale: 1,
+        filter: 'brightness(100%)',
+      },
+      {
+        scale: 0.9,
+        filter: 'brightness(20%)',
+      },
+      '<',
+    );
+});
+
 })
 </script>
 
 <template>
   <SectionStandard
     v-editable="block"
-    class="overflow-x-hidden"
     :headline="block.headline"
     :headline-a11y="block.headline_a11y"
     :text="block.text"
     :background="background"
   >
-    <UiCarousel
-      :per-view="perView"
-      :items="block.projects"
-    >
-      <template #item="{ headline, link, media, progress }">
-        <CardProject
-          :headline="headline"
-          :link="link"
-          :media="media"
-          :progress="progress"
-        />
-      </template>
-    </UiCarousel>
+    <div class="grid gap-gutter-md grid-cols-1">
+      <CardProject
+        v-for="(project, index) in block.projects"
+        :key="index"
+        ref="items"
+        class="sticky top-gutter-md origin-top"
+        :headline="project.headline"
+        :link="project.link"
+        :media="project.media"
+        :background="background === 'bg-primary' ? 'bg-secondary' : 'bg-primary'"
+      />
+    </div>
   </SectionStandard>
 </template>

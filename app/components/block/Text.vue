@@ -18,7 +18,7 @@ const background = block.background as 'bg-primary' | 'bg-secondary'
     <div class="wrapper mx-auto flex flex-col gap-10 md:gap-20">
       <h3
         v-if="block.headline"
-        class="text-18"
+        class="text-24"
       >
         {{ block.headline }}
       </h3>

@@ -5,89 +5,42 @@ interface Props {
   headline?: string
   link?: StoryblokMultilink
   media?: StoryblokAsset
-  progress?: number
+  background?: 'bg-primary' | 'bg-secondary'
 }
 
-const { headline, link, media, progress } = defineProps<Props>()
-
-const card = useTemplateRef<HTMLElement | null>('card')
-const maxShift = 100
-const parallaxState = reactive({
-  translateX: 0,
-})
-
-const updatePosition = () => {
-  if (!card.value) {
-    return
-  }
-
-  const rect = card.value.getBoundingClientRect()
-  const viewportWidth = window.innerWidth
-  const cardCenterX = rect.left + rect.width / 2
-  const positionRatio = cardCenterX / viewportWidth
-
-  parallaxState.translateX = (positionRatio - 0.5) * 2 * maxShift
-}
-
-let resizeObserver: ResizeObserver | null = null
-
-watch(() => progress, (newValue) => {
-  console.log('progress:', newValue)
-  updatePosition()
-})
-
-onMounted(async () => {
-  await nextTick()
-
-  updatePosition()
-
-  window.addEventListener('resize', updatePosition, { passive: true })
-
-  resizeObserver = new ResizeObserver(() => {
-    updatePosition()
-  })
-
-  if (card.value) {
-    resizeObserver.observe(card.value)
-  }
-})
-
-onBeforeUnmount(() => {
-  window.removeEventListener('resize', updatePosition)
-
-  if (resizeObserver && card.value) {
-    resizeObserver.unobserve(card.value)
-    resizeObserver.disconnect()
-  }
-})
+const { headline, link, media, background } = defineProps<Props>()
 </script>
 
 <template>
-  <div ref="card">
+  <div>
     <StoryblokLink
       :item="link"
-      class="no-underline flex flex-col gap-6 relative overflow-hidden transition-opacity duration-200 ease-in-out group-hover/carousel:opacity-20 group-focus-within/carousel:opacity-20 hover:opacity-100 focus:opacity-100"
-      @focus="updatePosition"
+      :class="[
+        background,
+        'no-underline grid grid-cols-12 gap-6 relative overflow-hidden rounded-10 aspect-16/7 text-tertiary'
+      ]"
     >
-      <div class="relative overflow-hidden w-full aspect-2/3 rounded-10">
-        <NuxtImg
-          v-if="media?.filename && storyblokAssetType(media.filename) === 'image'"
-          class="absolute top-0 left-1/2 max-w-none w-[calc(100%+225px)] h-full object-cover"
-          :style="{ transform: `translateX(calc(${parallaxState.translateX}px - 50%))` }"
-          :src="media.filename"
-          provider="storyblok"
-          width="300"
-          format="webp"
-          quality="80"
-          :modifiers="{ smart: true }"
-          loading="lazy"
-          :alt="`Project for ${media.alt || headline}`"
-        />
+      <div class="col-span-6 p-gutter flex flex-col gap-12 justify-between">
+        <h3 class="text-24 text-accent">
+          {{ headline }}
+        </h3>
+
+        <div class="flex flex-col gap-10 items-start">
+          <p class="text-30">Just describe it - Base44 helps you build it, host it, and get it ready to launch. No code. No setup. Just go.</p>
+          <ButtonAppearance text="Open project" size="small" />
+        </div>
       </div>
 
-      <h3 class="text-24 text-tertiary">
-        {{ headline }}
-      </h3>
+      <div class="col-span-6 overflow-hidden w-full">
+        <NuxtImg
+          v-if="media?.filename && storyblokAssetType(media.filename) === 'image'"
+          class="size-full object-cover"
+          :src="media.filename"
+          :alt="`Project for ${media.alt || headline}`"
+          width="300"
+          loading="lazy"
+        />
+      </div>
     </StoryblokLink>
   </div>
 </template>
