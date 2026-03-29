@@ -1,5 +1,9 @@
 <script lang="ts" setup>
 import type { StoryblokAsset, StoryblokRichtext, StoryblokMultilink } from '#storyblok-types'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(ScrollTrigger)
 
 interface Props {
   headline?: string
@@ -10,6 +14,37 @@ interface Props {
 }
 
 const { headline, link, text, media, background } = defineProps<Props>()
+
+const image = useTemplateRef('image')
+
+onMounted(() => {
+  const el = image.value?.imgEl as HTMLImageElement | undefined
+
+  if (!el) {
+    return
+  }
+
+  gsap
+    .timeline({
+      scrollTrigger: {
+        markers: false,
+        trigger: el,
+        scrub: 1,
+        start: 'top bottom',
+        end: 'bottom bottom',
+      },
+    })
+    .fromTo(
+      el,
+      {
+        scale: 1.2,
+      },
+      {
+        scale: 1,
+      },
+      '<',
+    );
+})
 </script>
 
 <template>
@@ -27,7 +62,7 @@ const { headline, link, text, media, background } = defineProps<Props>()
             {{ headline }}
           </h3>
 
-          <div class="flex flex-col gap-10 items-start">
+          <div class="flex flex-col gap-10 image-start">
             <div
               v-if="storyblokRichTextContent(text)"
               class="[&_:is(p):not(:last-child)]:mb-10 text-pretty text-24 @md:text-26 @lg:text-30"
@@ -43,6 +78,7 @@ const { headline, link, text, media, background } = defineProps<Props>()
       <div class="col-span-full md:col-span-1 overflow-hidden w-full">
         <NuxtImg
           v-if="media?.filename && storyblokAssetType(media.filename) === 'image'"
+          ref="image"
           class="size-full object-cover"
           :src="media.filename"
           :alt="`Project for ${media.alt || headline}`"
