@@ -14,9 +14,9 @@ const { content } = defineProps<Props>()
       v-for="(block) in content.blocks"
       :key="block._uid"
     >
-      <section v-if="block.component === 'block_hero'">
+      <header v-if="block.component === 'block_hero'">
         <BlockHero :block />
-      </section>
+      </header>
     </template>
 
     <main>
