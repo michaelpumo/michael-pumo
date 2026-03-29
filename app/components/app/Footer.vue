@@ -4,7 +4,7 @@ import Ditta from '@/assets/logos/ditta.svg'
 
 <template>
   <footer class="w-full px-gutter py-20">
-    <div class="w-full flex flex-col gap-gutter-md">
+    <div class="wrapper flex flex-col gap-gutter-md">
       <div class="w-full flex flex-col gap-7 max-w-[50ch] text-balance">
         <p class="text-24 sm:text-26 text-tertiary">
           It’s time to build your next web project.
