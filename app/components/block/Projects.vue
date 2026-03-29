@@ -12,7 +12,6 @@ interface Props {
 const { block } = defineProps<Props>()
 
 const background = block.background as 'bg-primary' | 'bg-secondary'
-
 const items = useTemplateRef('items')
 
 onMounted(() => {
@@ -22,7 +21,7 @@ onMounted(() => {
   if (!el) {
     return
   }
-  
+
   gsap
     .timeline({
       scrollTrigger: {
@@ -44,8 +43,7 @@ onMounted(() => {
       },
       '<',
     );
-});
-
+  });
 })
 </script>
 
@@ -63,8 +61,9 @@ onMounted(() => {
         :key="index"
         ref="items"
         class="sticky top-gutter-md origin-top"
-        :headline="project.headline"
         :link="project.link"
+        :headline="project.headline"
+        :text="project.text"
         :media="project.media"
         :background="background === 'bg-primary' ? 'bg-secondary' : 'bg-primary'"
       />
