@@ -13,7 +13,7 @@ const background = block.background as 'bg-primary' | 'bg-secondary'
   <div
     v-editable="block"
     class="w-full px-gutter py-gutter-xl"
-    :background="background"
+    :class="background"
   >
     <div class="w-full mx-auto md:max-w-153.75">
       <h3
