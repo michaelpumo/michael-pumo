@@ -11,7 +11,7 @@ interface Props {
 }
 
 const { tag = 'div' } = defineProps<Props>()
-const container = useTemplateRef<HTMLElement | null>('container')
+const container = useTemplateRef('container')
 
 const run = () => {
   const split = SplitText.create(

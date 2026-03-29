@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 const amount = 6
 const src = '/audio/waves.mp3'
-const audio = useTemplateRef<HTMLAudioElement | null>('audio')
+const audio = useTemplateRef('audio')
 const playing = ref<boolean>(false)
 const barHeights = ref<number[]>(Array.from({ length: amount }).map(() => getRandomNumber(16, 100)))
 

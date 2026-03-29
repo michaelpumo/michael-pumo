@@ -8,7 +8,7 @@ interface Props {
 }
 
 const { tag = 'div', delay = 0, duration = 0.5 } = defineProps<Props>()
-const element = useTemplateRef<string | null>('element')
+const element = useTemplateRef('element')
 const ready = ref(false)
 
 onMounted(async () => {

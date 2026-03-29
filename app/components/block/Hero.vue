@@ -8,7 +8,7 @@ interface Props {
 
 const { block } = defineProps<Props>()
 const background = block.background as 'bg-primary' | 'bg-secondary'
-const container = useTemplateRef<HTMLElement | null>('container')
+const container = useTemplateRef('container')
 const ready = ref(false)
 const lenis = useLenis()
 

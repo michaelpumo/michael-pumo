@@ -5,7 +5,7 @@ import { useAppStore } from '@/stores/app'
 
 const appStore = useAppStore()
 const size = 20
-const container = useTemplateRef<HTMLDivElement | null>('container')
+const container = useTemplateRef('container')
 
 const position = ref({
   x: 0,

@@ -11,8 +11,8 @@ interface Props {
 
 const { headline, text, index } = defineProps<Props>()
 
-const container = useTemplateRef<HTMLDivElement>('container')
-const content = useTemplateRef<HTMLDivElement>('content')
+const container = useTemplateRef('container')
+const content = useTemplateRef('content')
 const toggled = ref(false)
 const id = toId(headline || '') || undefined
 

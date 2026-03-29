@@ -12,7 +12,7 @@ interface Props {
 }
 
 const { tag = 'p', delay = 0, duration = 0.5, trigger = 'immediate' } = defineProps<Props>()
-const text = useTemplateRef<string | null>('text')
+const text = useTemplateRef('text')
 const ready = ref(false)
 
 const immediateFn = async () => {
