@@ -48,15 +48,15 @@ onMounted(() => {
 </script>
 
 <template>
-  <div>
+  <div class="w-full min-h-[calc(100svh-(var(--app-gutter)*2))] md:min-h-auto">
     <StoryblokLink
       :item="link"
       :class="[
+        'size-full no-underline flex flex-col md:flex-row relative overflow-hidden rounded-10 lg:aspect-16/7 text-tertiary',
         background,
-        'no-underline grid grid-cols-2 relative overflow-hidden rounded-10 lg:aspect-16/7 text-tertiary'
       ]"
     >
-      <div class="@container col-span-full md:col-span-1">
+      <div class="@container grow w-full">
         <div class="size-full p-6 @sm:p-10 @lg:p-gutter flex flex-col gap-12 justify-between">
           <h3 class="text-24 text-accent">
             {{ headline }}
@@ -75,7 +75,7 @@ onMounted(() => {
         </div>
       </div>
 
-      <div class="col-span-full md:col-span-1 overflow-hidden w-full">
+      <div class="overflow-hidden w-full max-md:aspect-square">
         <NuxtImg
           v-if="media?.filename && storyblokAssetType(media.filename) === 'image'"
           ref="image"
