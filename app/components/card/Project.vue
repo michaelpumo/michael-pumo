@@ -62,7 +62,7 @@ onMounted(() => {
             {{ headline }}
           </h3>
 
-          <div class="flex flex-col gap-10 image-start">
+          <div class="flex flex-col gap-10 items-start">
             <div
               v-if="storyblokRichTextContent(text)"
               class="[&_:is(p):not(:last-child)]:mb-10 text-pretty text-24 @md:text-26 @lg:text-30"
