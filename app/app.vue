@@ -32,10 +32,12 @@ useSeoMeta({
   themeColor,
 })
 
-useScriptPlausibleAnalytics({
-  domain: 'michaelpumo.com',
-  extension: ['file-downloads', 'outbound-links'],
-})
+if (!import.meta.dev) {
+  useScriptPlausibleAnalytics({
+    domain: 'michaelpumo.com',
+    extension: ['file-downloads', 'outbound-links'],
+  })
+}
 </script>
 
 <template>
