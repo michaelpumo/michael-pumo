@@ -2,6 +2,7 @@
 import type { BlockBento } from '#storyblok-components'
 
 import Astro from '@/assets/icons/astro.svg'
+import Claude from '@/assets/icons/claude.svg'
 import Css from '@/assets/icons/css.svg'
 import Figma from '@/assets/icons/figma.svg'
 import Git from '@/assets/icons/git.svg'
@@ -18,6 +19,7 @@ import Supabase from '@/assets/icons/supabase.svg'
 import Tailwind from '@/assets/icons/tailwind.svg'
 import Ts from '@/assets/icons/ts.svg'
 import Vite from '@/assets/icons/vite.svg'
+import Vscode from '@/assets/icons/vscode.svg'
 import Vue from '@/assets/icons/vue.svg'
 
 import Ditta from '@/assets/logos/ditta.svg'
@@ -45,6 +47,10 @@ const technologies = [
   {
     name: 'Astro',
     logo: Astro,
+  },
+  {
+    name: 'Claude Code',
+    logo: Claude,
   },
   {
     name: 'CSS',
@@ -109,6 +115,10 @@ const technologies = [
   {
     name: 'Vite',
     logo: Vite,
+  },
+  {
+    name: 'VS Code',
+    logo: Vscode,
   },
   {
     name: 'Vue',
