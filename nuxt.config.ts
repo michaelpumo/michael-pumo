@@ -5,13 +5,14 @@ import svgLoader from 'vite-svg-loader'
 
 export default defineNuxtConfig({
   modules: [
-    '@pinia/nuxt',
-    'pinia-plugin-persistedstate/nuxt',
+    '@nuxtjs/seo',
     '@nuxt/eslint',
     '@nuxt/image',
     '@nuxt/scripts',
-    '@nuxtjs/sitemap',
+    '@pinia/nuxt',
+    'pinia-plugin-persistedstate/nuxt',
     'lenis/nuxt',
+    'nuxt-ai-ready',
     [
       '@storyblok/nuxt',
       {
@@ -37,10 +38,6 @@ export default defineNuxtConfig({
         { 'http-equiv': 'content-language', 'content': 'en-GB' },
       ],
       link: [
-        { rel: 'icon', href: '/favicon.ico', sizes: '32x32' },
-        { rel: 'icon', href: '/favicon.svg', type: 'image/svg+xml' },
-        { rel: 'icon', type: 'image/png', href: '/favicon-96x96.png', sizes: '96x96' },
-        { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
         { rel: 'manifest', href: '/site.webmanifest' },
         { rel: 'preload', type: 'font/woff2', href: '/fonts/SaansProportional-VF.woff2', as: 'font', crossorigin: '' },
         { rel: 'preload', type: 'font/woff2', href: '/fonts/SaansItalics-VF.woff2', as: 'font', crossorigin: '' },
@@ -106,6 +103,7 @@ export default defineNuxtConfig({
         'lucide-vue-next',
         'gsap/ScrollTrigger',
         '@vueuse/core',
+        '@tiptap/core',
       ],
     },
   },
@@ -146,6 +144,7 @@ export default defineNuxtConfig({
     },
   },
   sitemap: {
+    excludeAppSources: true,
     sources: [
       '/api/sitemap',
     ],

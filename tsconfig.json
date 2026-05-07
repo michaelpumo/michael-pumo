@@ -1,8 +1,17 @@
 {
-  "extends": "./.nuxt/tsconfig.json",
-  "files": [
-    "types/app.d.ts",
-    "types/index.d.ts",
-    "types/reset.d.ts"
+  "files": [],
+  "references": [
+    {
+      "path": "./.nuxt/tsconfig.app.json"
+    },
+    {
+      "path": "./.nuxt/tsconfig.server.json"
+    },
+    {
+      "path": "./.nuxt/tsconfig.shared.json"
+    },
+    {
+      "path": "./.nuxt/tsconfig.node.json"
+    }
   ]
 }
