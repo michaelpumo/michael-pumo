@@ -22,11 +22,11 @@ useHead({
   <div class="w-full min-h-svh bg-primary p-gutter flex gap-10 flex-col items-start justify-between">
     <div class="@container/error-content w-full my-auto flex gap-7 flex-col items-start justify-center">
       <EffectTextReveal
-        class="text-tertiary max-w-[18ch] text-40 @md/error-content:text-48"
+        class="text-tertiary max-w-[18ch] text-fluid-36-64 text-pretty font-light"
         tag="h1"
         :delay="200"
       >
-        Our AI overlords can't help you with that.
+        Our AI overlords can't help you with that request.
       </EffectTextReveal>
 
       <EffectFadeReveal
@@ -34,7 +34,7 @@ useHead({
         :delay="1300"
         class="[&_:is(p):not(:last-child)]:mb-7 text-18 max-w-[40ch]"
       >
-        They were hallucinating something about a {{ message.toLowerCase() }}, but that's why we still need humans, right?
+        They were hallucinating something about {{ message.toLowerCase() }} — we still need humans, right?
       </EffectFadeReveal>
 
       <EffectFadeReveal
