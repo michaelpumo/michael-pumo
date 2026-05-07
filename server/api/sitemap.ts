@@ -16,11 +16,11 @@ export default defineSitemapEventHandler(async () => {
       version: 'published',
       page: 1,
       per_page: 100,
+      excluding_slugs: 'settings',
       excluding_fields: 'blocks,hero,seo_title,category,author,seo_description,seo_image',
     })
 
     const pages = response
-      .filter((link: ISbStoryData) => link.slug !== 'settings')
       .map((link: ISbStoryData) => ({
         loc: link.slug === 'home' ? '/' : `/${link.full_slug}`,
         lastmod: link.updated_at,
