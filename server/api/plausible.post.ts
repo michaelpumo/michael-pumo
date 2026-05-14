@@ -1,8 +1,8 @@
 export default defineEventHandler(async (event) => {
-  const body = await readRawBody(event)
+  const body = await readRawBody(event, 'utf-8')
   const headers = getRequestHeaders(event)
 
-  await $fetch('https://plausible.io/api/event', {
+  const response = await fetch('https://plausible.io/api/event', {
     method: 'POST',
     body,
     headers: {
@@ -10,10 +10,9 @@ export default defineEventHandler(async (event) => {
       'user-agent': headers['user-agent'] ?? '',
       'x-forwarded-for': headers['x-forwarded-for'] ?? getRequestIP(event) ?? '',
     },
-    ignoreResponseError: true,
   })
 
-  setResponseStatus(event, 202)
+  setResponseStatus(event, response.status)
 
   return null
 })
