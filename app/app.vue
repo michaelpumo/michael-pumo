@@ -37,7 +37,7 @@ if (!import.meta.dev) {
     domain: 'michaelpumo.com',
     extension: ['file-downloads', 'outbound-links'],
     captureOnLocalhost: false,
-    endpoint: '/api/plausible'
+    endpoint: 'https://plausible.io/api/event'
   })
 }
 </script>
