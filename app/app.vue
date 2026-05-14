@@ -36,6 +36,8 @@ if (!import.meta.dev) {
   useScriptPlausibleAnalytics({
     domain: 'michaelpumo.com',
     extension: ['file-downloads', 'outbound-links'],
+    captureOnLocalhost: false,
+    endpoint: '/api/plausible'
   })
 }
 </script>
