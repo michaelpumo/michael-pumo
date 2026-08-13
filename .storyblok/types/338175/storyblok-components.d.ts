@@ -10,6 +10,7 @@ export interface BlockBento {
   background: number | string;
   component: "block_bento";
   _uid: string;
+  _editable?: string | undefined;
 }
 
 export interface BlockFaq {
@@ -18,6 +19,7 @@ export interface BlockFaq {
   background: number | string;
   component: "block_faq";
   _uid: string;
+  _editable?: string | undefined;
 }
 
 export interface BlockHero {
@@ -30,6 +32,7 @@ export interface BlockHero {
   background: number | string;
   component: "block_hero";
   _uid: string;
+  _editable?: string | undefined;
 }
 
 export interface BlockPlay {
@@ -39,6 +42,7 @@ export interface BlockPlay {
   background: number | string;
   component: "block_play";
   _uid: string;
+  _editable?: string | undefined;
 }
 
 export interface BlockProjects {
@@ -49,6 +53,7 @@ export interface BlockProjects {
   background: number | string;
   component: "block_projects";
   _uid: string;
+  _editable?: string | undefined;
 }
 
 export interface BlockText {
@@ -57,6 +62,7 @@ export interface BlockText {
   background: number | string;
   component: "block_text";
   _uid: string;
+  _editable?: string | undefined;
 }
 
 export interface Faq {
@@ -64,26 +70,19 @@ export interface Faq {
   answer?: StoryblokRichtext;
   component: "faq";
   _uid: string;
+  _editable?: string | undefined;
 }
 
 export interface Page {
   blocks?: (
-    | BlockBento
-    | BlockFaq
-    | BlockHero
-    | BlockPlay
-    | BlockProjects
-    | BlockText
-    | Faq
-    | Page
-    | Project
-    | Testimonial
+    BlockBento | BlockFaq | BlockHero | BlockPlay | BlockProjects | BlockText | Faq | Page | Project | Testimonial
   )[];
   seo_title: string;
   seo_description: string;
   seo_image: StoryblokAsset;
   component: "page";
   _uid: string;
+  _editable?: string | undefined;
 }
 
 export interface Project {
@@ -93,6 +92,7 @@ export interface Project {
   link?: Exclude<StoryblokMultilink, {linktype?: "email"} | {linktype?: "asset"}>;
   component: "project";
   _uid: string;
+  _editable?: string | undefined;
 }
 
 export interface Testimonial {
@@ -101,6 +101,7 @@ export interface Testimonial {
   subtext?: string;
   component: "testimonial";
   _uid: string;
+  _editable?: string | undefined;
 }
 
 export type ContentType = Page;

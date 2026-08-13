@@ -2,32 +2,64 @@
 import type { StoryblokMultilink } from '#storyblok-types'
 
 interface Props {
-  item?: StoryblokMultilink
+  item: StoryblokMultilink
 }
 
 const { item } = defineProps<Props>()
 
-const href
-  = item?.linktype === 'email'
-    ? `mailto:${item?.email}`
-    : item?.linktype === 'story'
-      ? `/${item?.cached_url?.replace('home', '')}`
-      : item?.cached_url
+const route = useRoute()
 
-const customAttributes = {
-  title: item?.title,
-  rel: item?.rel,
+const determineHref = (item: StoryblokMultilink) => {
+  switch (item.linktype) {
+    case 'story': {
+      const path = `/${item.cached_url}`.replace('/home', '/').trim()
+      return path === '/' ? path : path.replace(/\/$/, '')
+    }
+    case 'email': {
+      return `mailto:${item.email}`
+    }
+    default: {
+      return item.cached_url
+    }
+  }
 }
 
+const isActiveLink = computed(() => {
+  const href = determineHref(item)
+  return route.path === href || (href !== '/' && route.path.startsWith(`${href}/`))
+})
+
 const attributes = {
-  ...customAttributes,
-  to: href?.trim().replace(/\/+$/, ''),
-  target: item?.target ?? item?.linktype === 'asset' ? '_blank' : null,
+  title: item?.title,
+  rel: item?.rel,
+  to: determineHref(item),
+  target: (item?.target ?? item?.linktype === 'asset') ? '_blank' : null,
+}
+
+const lenis = useLenis()
+
+const smoothScrollHash = (e: MouseEvent) => {
+  const hashIndex = attributes.to.indexOf('#')
+
+  if (hashIndex === -1) {
+    return
+  }
+
+  const element = document.querySelector(attributes.to.slice(hashIndex)) as HTMLElement | null
+
+  if (element) {
+    e.preventDefault()
+    lenis.value?.scrollTo(element, { offset: 1, duration: 1.5 })
+  }
 }
 </script>
 
 <template>
-  <NuxtLink v-bind="attributes">
+  <NuxtLink
+    v-bind="attributes"
+    :class="{ 'router-link-active': isActiveLink }"
+    @click="smoothScrollHash"
+  >
     <slot />
   </NuxtLink>
 </template>
